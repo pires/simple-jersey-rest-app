@@ -17,8 +17,8 @@ import javax.ws.rs.core.MediaType;
 /**
  * 
  */
-@Path("/admin")
-public class AdminService {
+@Path("/isp")
+public class ISPService {
 
         ISP zon = new ISP(0, "ZON");
         ISP meo = new ISP(1, "Meo");
@@ -27,21 +27,19 @@ public class AdminService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/isp/list")
 	public List<ISP> getISPs() {
             return Arrays.asList(isps);
 	}
 
 	@GET
         @Produces(MediaType.APPLICATION_JSON)
-	@Path("/isp/{id}")
+	@Path("/{id}")
 	public ISP getISP(@PathParam("id") Integer id) {
             return isps[id];
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Path("/isp/{isp}")
 	public void addISP(ISP isp) {
 	    System.out.println("ISP name: " + isp.getName());
         }

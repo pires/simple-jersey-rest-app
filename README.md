@@ -19,6 +19,6 @@ Then, deploy the resulting _target/jersey_rest-0.1.war_ to your Glassfish domain
 ## Test ##
 
 Point your browser to:
-* Retrieve all ISPs in JSON:  _http://localhost:8080/jersey_rest/rest/admin/isp/list_
-* Retrieve single ISP in JSON: _http://localhost:8080/jersey_rest/rest/admin/isp/1_
+* Retrieve all ISPs in JSON:  _http://localhost:8080/jersey_rest/rest/isp/list_
+* Retrieve single ISP in JSON: _http://localhost:8080/jersey_rest/rest/isp/1_
 * Upload ISP in JSON: execute _./test_post_isp_json.sh_
