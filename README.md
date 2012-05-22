@@ -14,8 +14,10 @@ In order to build a WAR package, run the following command:
 
 _mvn clean package_
 
-Then, deploy the resulting _target/simple-jersey-rest-app-0.1.war_ to your Glassfish domain instance.
+Then, deploy the resulting _target/simple-jersey-rest-app-0.1.war_ to your Glassfish domain instance with _jersey_rest_ as application context-root.
 
 ## Test ##
 
-Point your browser to _http://localhost:8080/jersey-rest-app-0.1/rest/admin/isp_
+Point your browser to:
+* Retrieve all ISPs in JSON:  _http://localhost:8080/jersey_rest/rest/admin/isp_
+* Retrieve single ISP in JSON: _http://localhost:8080/jersey_rest/rest/admin/isp/1_
