@@ -3,6 +3,8 @@
  */
 package rest;
 
+import java.util.Arrays;
+import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,8 +28,8 @@ public class AdminService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/isp/list")
-	public ISP[] getISPs() {
-            return isps;
+	public List<ISP> getISPs() {
+            return Arrays.asList(isps);
 	}
 
 	@GET
