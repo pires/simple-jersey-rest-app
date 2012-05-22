@@ -31,6 +31,7 @@ public class AdminService {
 	}
 
 	@GET
+        @Produces(MediaType.APPLICATION_JSON)
 	@Path("/isp/{id}")
 	public ISP getISP(@PathParam("id") Integer id) {
             return isps[id];
