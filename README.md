@@ -14,7 +14,7 @@ In order to build a WAR package, run the following command:
 
 _mvn clean package_
 
-Then, deploy the resulting _target/simple-jersey-rest-app-0.1.war_ to your Glassfish domain instance with _jersey_rest_ as application context-root.
+Then, deploy the resulting _target/jersey_rest-0.1.war_ to your Glassfish domain instance with _jersey_rest_ as application context-root.
 
 ## Test ##
 

@@ -25,7 +25,7 @@ public class AdminService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/isp")
+	@Path("/isp/list")
 	public ISP[] getISPs() {
             return isps;
 	}
