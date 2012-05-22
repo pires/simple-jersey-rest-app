@@ -41,13 +41,13 @@ public class ISPService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void addISP(ISP isp) {
-	    System.out.println("ISP name: " + isp.getName());
+	    System.out.println("Created ISP with name: " + isp.getName());
         }
 
 	@DELETE
-	@Path("/isp/{id}")
+	@Path("/{id}")
 	public void removeISP(@PathParam("id") Long id) {
-            // TODO
+            System.out.println("Removed ISP with ID " + id);
 	}
 
 }
