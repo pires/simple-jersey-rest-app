@@ -27,6 +27,7 @@ public class ISPService {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/list")
 	public List<ISP> getISPs() {
             return Arrays.asList(isps);
 	}
