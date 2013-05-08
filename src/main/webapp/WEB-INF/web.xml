@@ -2,7 +2,7 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-  <display-name>ANACOM QoS Measurement Platform</display-name>
+  <display-name>Simple Jersey REST app</display-name>
 
   <servlet>
     <servlet-name>Jersey REST Service</servlet-name>
@@ -13,7 +13,7 @@
     </init-param>
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
-      <param-value>rest</param-value>
+      <param-value>com.github.pires.example.rest</param-value>
     </init-param>
 
     <init-param>
