@@ -13,4 +13,4 @@ A simple proof-of-concept of RESTful web service implemented with Jersey and GSO
 ## Test ##
 ```
 mvn clean install
-``
+```
