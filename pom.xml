@@ -4,7 +4,7 @@
 
   <groupId>com.github.pires.example</groupId>
   <artifactId>simple-jersey-rest-app</artifactId>
-  <version>0.2</version>
+  <version>0.3-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>Simple Jersey REST App</name>
@@ -23,7 +23,7 @@
     <connection>scm:git:git@github.com:pires/simple-jersey-rest-app.git</connection>
     <developerConnection>scm:git:git@github.com:pires/simple-jersey-rest-app.git</developerConnection>
     <url>git@github.com:pires/simple-jersey-rest-app.git</url>
-    <tag>simple-jersey-rest-app-0.2</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <developers>
