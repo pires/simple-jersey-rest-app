@@ -6,9 +6,37 @@
 
   <groupId>com.github.pires.example</groupId>
   <artifactId>simple-jersey-rest-app</artifactId>
-  <version>2.0</version>
+  <version>0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+
   <name>Simple Jersey REST App</name>
+  <description>Simple Jersey REST application example</description>
+  <url>https://github.com/pires/simple-jersey-rest-app</url>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git@github.com:pires/simple-jersey-rest-app.git</connection>
+    <developerConnection>scm:git:git@github.com:pires/simple-jersey-rest-app.git</developerConnection>
+    <url>git@github.com:pires/simple-jersey-rest-app.git</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>pjpires</id>
+      <name>Paulo Pires</name>
+      <email>pjpires@gmail.com</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -130,7 +158,49 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>2.3</version>
       </plugin>
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.4.1</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <localCheckout>true</localCheckout>
+          <pushChanges>false</pushChanges>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <keyname>E2F0317F</keyname>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
