@@ -13,19 +13,27 @@
 package com.github.pires.example.rest.model;
 
 public class ISP {
-	private String key, name;
+  private String key, name;
 
-	public ISP(String key, String name) {
-		this.key = key;
-		this.name = name;
-	}
+  public ISP() {
+  }
 
-	public String getKey() {
-		return key;
-	}
+  public ISP(String key, String name) {
+    this.key = key;
+    this.name = name;
+  }
 
-	public String getName() {
-		return name;
-	}
+  public String getKey() {
+    return key;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public String toString() {
+    return "K:" + key + ", V:" + name;
+  }
 
 }

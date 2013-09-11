@@ -14,14 +14,17 @@ package com.github.pires.example.rest;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.lang.reflect.Type;
-import java.util.Collection;
+import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.github.pires.example.rest.model.ISP;
@@ -36,35 +39,41 @@ import com.google.gson.reflect.TypeToken;
  */
 public class ISPServiceTest {
 
-	private static final String PATH = "http://localhost:9090/rest/isp";
+  private static final String PATH = "http://localhost:8181/rest/isp";
+  private static final int STATUS_OK = 200;
+  private Client client;
+  private WebTarget target;
 
-	private Type collectionType = new TypeToken<Collection<ISP>>() {
-	}.getType();
+  private Type type = new TypeToken<List<ISP>>() {
+  }.getType();
 
-	@Test
-	public void testListIsps() throws ClientProtocolException, IOException {
-		HttpResponse httpResponse = RESTClient.doHttpGet(PATH.concat("/list"),
-		        null, null);
-		assertEquals(httpResponse.getStatusLine().getStatusCode(), 200);
-		Reader reader = new InputStreamReader(httpResponse.getEntity()
-		        .getContent(), "UTF-8");
-		Collection<ISP> isps = new Gson().fromJson(reader, collectionType);
-		assertEquals(isps.size(), 3);
-	}
+  @BeforeClass
+  private void setUp() {
+    client = ClientBuilder.newClient();
+    target = client.target(PATH);
+  }
 
-	@Test
-	public void addIsp() throws ClientProtocolException, IOException {
-		ISP tmn = new ISP("tmn", "TMN");
-		HttpResponse httpResponse = RESTClient.doJSONPut(PATH, null,
-		        new Gson().toJson(tmn));
-		assertEquals(httpResponse.getStatusLine().getStatusCode(), 200);
-	}
+  @Test
+  public void testListIsps() {
+    Response response = target.request().get();
+    assertEquals(response.getStatus(), STATUS_OK);
+    final String json = response.readEntity(String.class);
+    List<ISP> isps = new Gson().fromJson(json, type);
+    assertEquals(isps.size(), 3);
+  }
 
-	@Test
-	public void testDeleteIsp() throws ClientProtocolException, IOException {
-		HttpResponse httpResponse = RESTClient.doHttpDelete(
-		        PATH.concat("/zon"), null);
-		assertEquals(httpResponse.getStatusLine().getStatusCode(), 200);
-	}
+  @Test
+  public void testAddIsp() {
+    ISP tmn = new ISP("tmn", "TMN");
+    Response response = target.request(MediaType.APPLICATION_JSON).put(
+        Entity.json(tmn));
+    assertEquals(response.getStatus(), STATUS_OK);
+  }
+
+  @Test
+  public void testDeleteIsp() {
+    Response response = target.path("/zon").request().delete();
+    assertEquals(response.getStatus(), STATUS_OK);
+  }
 
 }

@@ -12,8 +12,11 @@
  */
 package com.github.pires.example.rest.services;
 
-import java.util.Collection;
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.Consumes;
@@ -31,46 +34,51 @@ import com.github.pires.example.rest.model.ISP;
 @Path("/isp")
 public class ISPService {
 
-	private Map<String, ISP> isps = new HashMap<String, ISP>();
+  private static Map<String, ISP> isps;
 
-	/*
-	 * This is ctor'ed on every request, so it's lamme. But is enough for simple
-	 * Jersey testing.
-	 */
-	public ISPService() {
-		isps.put("zon", new ISP("zon", "ZON"));
-		isps.put("meo", new ISP("meo", "Meo"));
-		isps.put("vod", new ISP("vod", "Vodafone"));
-	}
+  static {
+    isps = new HashMap<String, ISP>();
+    isps.put("zon", new ISP("zon", "ZON"));
+    isps.put("meo", new ISP("meo", "Meo"));
+    isps.put("vod", new ISP("vod", "Vodafone"));
+  }
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/list")
-	public Collection<ISP> getISPs() {
-		return isps.values();
-	}
+  /*
+   * This is ctor'ed on every request, so it's lamme. But is enough for simple
+   * Jersey testing.
+   */
+  public ISPService() {
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/{key}")
-	public ISP getISP(@PathParam("key") String key) {
-		return isps.get(key);
-	}
+  }
 
-	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addISP(final ISP isp) {
-		System.out.println("Creating ISP with name: " + isp.getName());
-		isps.put(isp.getKey(), isp);
-		return Response.ok().build();
-	}
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public List<ISP> getISPs() {
+    return new ArrayList<ISP>(isps.values());
+  }
 
-	@DELETE
-	@Path("/{key}")
-	public Response removeISP(@PathParam("key") String key) {
-		System.out.println("Removing ISP with key: " + key);
-		isps.remove(key);
-		return Response.ok().build();
-	}
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  @Path("/{key}")
+  public ISP getISP(@PathParam("key") String key) {
+    return isps.get(key);
+  }
+
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Response addISP(ISP isp) {
+    checkNotNull(isp);
+    System.out.println("Creating ISP: " + isp.toString());
+    isps.put(isp.getKey(), isp);
+    return Response.ok().build();
+  }
+
+  @DELETE
+  @Path("/{key}")
+  public Response removeISP(@PathParam("key") String key) {
+    System.out.println("Removing ISP with key: " + key);
+    isps.remove(key);
+    return Response.ok().build();
+  }
 
 }
