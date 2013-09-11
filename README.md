@@ -1,16 +1,24 @@
 simple-jersey-rest-app
 ====================
 
-A simple proof-of-concept of RESTful web service implemented with Jersey and GSON instead of default Jackson.
-
 [![Build Status](https://drone.io/github.com/pires/simple-jersey-rest-app/status.png)](https://drone.io/github.com/pires/simple-jersey-rest-app/latest)
 
+A simple Java EE 7 (JAX-RS 2.0) application that features:
+* GSON as JSON provider
+* A working implementation of _ApplicationEventListener_
+* Example of JAX-RS 2.0 client API usage (look for it in the integration tests)
+
 ## Prerequisites ##
-- JDK 6
+- JDK 7
 - Maven 3.0.3 or newer
-- Glassfish 3.1.1 or newer
+- Glassfish 4.0 or newer (**only** if you want to deploy the WAR file)
 
 ## Test ##
 ```
-mvn clean install
+mvn clean test
+```
+
+## Generate WAR ##
+```
+mvn clean package
 ```
