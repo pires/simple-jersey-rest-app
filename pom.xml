@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.pires.example</groupId>
   <artifactId>simple-jersey-rest-app</artifactId>
-  <version>0.1-SNAPSHOT</version>
+  <version>0.1</version>
   <packaging>war</packaging>
 
   <name>Simple Jersey REST App</name>
@@ -25,6 +23,7 @@
     <connection>scm:git:git@github.com:pires/simple-jersey-rest-app.git</connection>
     <developerConnection>scm:git:git@github.com:pires/simple-jersey-rest-app.git</developerConnection>
     <url>git@github.com:pires/simple-jersey-rest-app.git</url>
+    <tag>simple-jersey-rest-app-0.1</tag>
   </scm>
 
   <developers>
